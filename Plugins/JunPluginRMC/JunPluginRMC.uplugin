@@ -1,0 +1,34 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "Jun Plugin RMC",
+	"Description": "Provides RMC wrappers for Jun",
+	"Category": "Examples",
+	"CreatedBy": "Sobyg UG (haftungsbeschränkt)",
+	"CreatedByURL": "https://sobyg.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "JunPluginRMC",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "JunPlugin",
+            "Enabled": true
+		},
+		{
+			"Name": "RuntimeMeshComponent",
+			"Enabled": true
+		}
+	]
+}

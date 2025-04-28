@@ -1,0 +1,4 @@
+# Packages scanned for classes contributing to the rulebook definition.
+# Note that subpackages are included.
+com.cerebrallychallenged
+mods

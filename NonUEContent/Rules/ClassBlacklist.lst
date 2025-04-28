@@ -1,0 +1,10 @@
+# Classes that shall be omitted from the rulebook.
+
+#com.cerebrallychallenged.hypogean.vanilla.items.melee.SmashArm
+#com.cerebrallychallenged.hypogean.vanilla.items.melee.SmashArmAttack
+#com.cerebrallychallenged.hypogean.vanilla.items.melee.SyphonArm
+#com.cerebrallychallenged.hypogean.vanilla.items.melee.SyphonArmAttack
+#com.cerebrallychallenged.hypogean.vanilla.items.ranged.missile.LongRangeMissileLauncherAttack
+#com.cerebrallychallenged.hypogean.vanilla.items.ranged.missile.MediumRangeMissileLauncherAttack
+
+

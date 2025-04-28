@@ -1,0 +1,226 @@
+{
+    "output_path": "generated",
+    "gui_sizes": {
+        "Full": null,
+        "1": [91, 91],
+        "2": [128, 128],
+        "3": [256, 256]
+    },
+    "input": [
+        {
+            "prefix": "button",
+            "svg": "icons/close.svg",
+            "gui_sizes": {
+                "Full": null,
+                "1": [80, 80]
+            },
+            "selectable": false
+        },
+        {
+            "svg": "icons/walk.svg"
+        },
+        {
+            "name": "chassis",
+            "svg": "icons/tank-tread.svg",
+            "size": 350,
+            "shift": [-60, 0]
+        },
+		{
+            "name": "armor-punch",
+            "svg": "icons/armor-punch.svg",
+            "size": 300
+        },
+		{
+            "name": "armor-punch-sandwatch",
+            "svg": "icons/armor-punch-sandwatch.svg",
+            "size": 300
+        },
+		{
+            "name": "autogun-1",
+            "svg": "icons/autogun-1.svg",
+            "size": 300
+        },
+		{
+            "name": "autogun-2",
+            "svg": "icons/autogun-2.svg",
+            "size": 300
+        },
+		{
+            "name": "autogun-3",
+            "svg": "icons/autogun-3.svg",
+            "size": 300
+        },
+		{
+            "name": "auto-repair",
+            "svg": "icons/auto-repair.svg",
+            "size": 300
+        },
+		{
+            "name": "bolter-gun-1",
+            "svg": "icons/bolter-gun-1.svg",
+            "size": 300
+        },
+		{
+            "name": "bolter-gun-2",
+            "svg": "icons/bolter-gun-2.svg",
+            "size": 300
+        },
+		{
+            "name": "bolter-gun-3",
+            "svg": "icons/bolter-gun-3.svg",
+            "size": 300
+        },
+		{
+            "name": "cannon-shot-1",
+            "svg": "icons/cannon-shot-1.svg",
+            "size": 300
+        },
+		        {
+            "name": "cannon-shot-2",
+            "svg": "icons/cannon-shot-2.svg",
+            "size": 300
+        },
+		        {
+            "name": "cannon-shot-3",
+            "svg": "icons/cannon-shot-3.svg",
+            "size": 300
+        },
+		{
+            "name": "circle-claws",
+            "svg": "icons/circle-claws.svg",
+            "size": 350
+        },
+		        {
+            "name": "clockwise-rotation",
+            "svg": "icons/clockwise-rotation.svg",
+            "size": 350
+        },
+		{
+            "name": "crosshair",
+            "svg": "icons/crosshair.svg",
+            "size": 380
+        },
+		{
+            "name": "double-dragon",
+            "svg": "icons/double-dragon.svg",
+            "size": 280
+        },
+		{
+            "name": "energy-shield",
+            "svg": "icons/energy-shield.svg",
+            "size": 330
+        },
+		{
+            "name": "flame-claws",
+            "svg": "icons/flame-claws.svg",
+			"shift": [20, 0],
+            "size": 300
+        },
+		{
+            "name": "grapple",
+            "svg": "icons/grapple.svg",
+			"shift": [20, 0],
+            "size": 300
+        },
+		{
+            "name": "harpoon-chain",
+            "svg": "icons/harpoon-chain.svg",
+            "size": 280
+        },
+		{
+            "name": "joystick",
+            "svg": "icons/joystick.svg",
+            "size": 300
+        },
+		{
+            "name": "laser-blast-1",
+            "svg": "icons/laser-blast-1.svg",
+            "size": 260
+        },
+		{
+            "name": "laser-blast-2",
+            "svg": "icons/laser-blast-2.svg",
+            "size": 260
+        },
+		{
+            "name": "laser-blast-3",
+            "svg": "icons/laser-blast-3.svg",
+            "size": 260
+        },
+		{
+            "name": "machine-gun-1",
+            "svg": "icons/machine-gun-1.svg",
+            "size": 280
+        },
+		{
+            "name": "machine-gun-2",
+            "svg": "icons/machine-gun-2.svg",
+            "size": 280
+        },
+		{
+            "name": "machine-gun-3",
+            "svg": "icons/machine-gun-3.svg",
+            "size": 280
+        },
+		{
+            "name": "minigun-1",
+            "svg": "icons/minigun-1.svg",
+            "size": 280
+        },
+		{
+            "name": "minigun-2",
+            "svg": "icons/minigun-2.svg",
+            "size": 280
+        },
+		{
+            "name": "minigun-3",
+            "svg": "icons/minigun-3.svg",
+            "size": 280
+        },
+		{
+            "name": "next-button",
+            "svg": "icons/next-button.svg",
+            "size": 280
+        },
+		{
+            "name": "ray-gun-1",
+            "svg": "icons/ray-gun-1.svg",
+            "size": 300
+        },
+		{
+            "name": "ray-gun-2",
+            "svg": "icons/ray-gun-2.svg",
+            "size": 300
+        },
+		{
+            "name": "ray-gun-3",
+            "svg": "icons/ray-gun-3.svg",
+            "size": 300
+        },
+		{
+            "name": "rocket-1",
+            "svg": "icons/rocket-1.svg",
+            "size": 280
+        },
+		{
+            "name": "rocket-2",
+            "svg": "icons/rocket-2.svg",
+            "size": 280
+        },
+		{
+            "name": "rocket-3",
+            "svg": "icons/rocket-3.svg",
+            "size": 280
+        },
+		{
+            "name": "talk",
+            "svg": "icons/talk.svg",
+            "size": 280
+        },
+		{
+            "name": "wolverine-claws",
+            "svg": "icons/wolverine-claws.svg",
+            "size": 300
+        }
+    ]
+}

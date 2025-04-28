@@ -1,0 +1,10 @@
+C: Inventory/Character View
+Q: Rotate camera counterclockwise
+E: Rotate camera clockwise
+W / Cursor up: Move map up
+S / Cursor down: Move map down
+A / Cursor left: Move map to the left
+D / Cursor right: Move map to the right
+PageUp: Zoom out
+PageDown: Zoom in
+ALT-F4: End game

@@ -1,0 +1,6 @@
+Press E to turn the camera clockwise, press Q to turn the camera counter-clockwise.
+The map can be moved with the keys A, S, D and W.
+Press PageUp or PageDown to zoom out or zoom in.
+Press Esc to go to the menu.
+Going onto a charging panel or skipping your turn on a charging panel will restore energy.
+You can adjust the energy of items like your chassis to make actions stronger and weaker, e.g. increase the movement radius.

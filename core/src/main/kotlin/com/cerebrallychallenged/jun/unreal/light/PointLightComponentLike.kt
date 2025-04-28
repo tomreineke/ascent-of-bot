@@ -1,0 +1,3 @@
+package com.cerebrallychallenged.jun.unreal.light
+
+interface PointLightComponentLike : LocalLightComponentLike

@@ -1,0 +1,42 @@
+package com.cerebrallychallenged.hypogean.vanilla.items.ranged.energy
+
+import com.cerebrallychallenged.hypogean.model.Initializer
+import com.cerebrallychallenged.hypogean.model.action.ActionCategory
+import com.cerebrallychallenged.hypogean.model.effect.Effect
+import com.cerebrallychallenged.hypogean.model.effect.directEffect
+import com.cerebrallychallenged.hypogean.model.effect.of
+import com.cerebrallychallenged.hypogean.model.entityTypeOf
+import com.cerebrallychallenged.hypogean.model.name
+import com.cerebrallychallenged.hypogean.vanilla.actions.Attack
+import com.cerebrallychallenged.hypogean.vanilla.attributes.cooldown
+import com.cerebrallychallenged.hypogean.vanilla.attributes.icon
+import com.cerebrallychallenged.hypogean.vanilla.attributes.initiativeCost
+import com.cerebrallychallenged.hypogean.vanilla.attributes.weight
+import com.cerebrallychallenged.hypogean.vanilla.effects.EnergyDamage
+import com.cerebrallychallenged.hypogean.vanilla.refs.ActionIcons
+import com.cerebrallychallenged.hypogean.vanilla.refs.Images
+import com.cerebrallychallenged.hypogean.view.actionbar.ActionButtonStylings
+import com.cerebrallychallenged.hypogean.view.actionbar.RankBadge
+
+open class HeavyParticleProjectileCannon(initializer: Initializer) : ParticleProjectileCannon(initializer) {
+    init {
+        name = "Heavy PPC"
+        weight = 10.0f
+        icon = Images.Autogun3
+        cooldown = 10
+        initiativeCost = 5
+        directEffect = Effect(
+            34..36 of EnergyDamage
+        )
+    }
+}
+
+internal object HeavyParticleProjectileCannonAppearance : ActionButtonStylings({
+    defineStyling(
+        category = ActionCategory.Attack,
+        tool = entityTypeOf<HeavyParticleProjectileCannon>()
+    ) {
+        icon = ActionIcons.Autogun
+        badge(RankBadge, 3)
+    }
+})

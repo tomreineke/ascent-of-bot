@@ -1,0 +1,79 @@
+## Java
+/core/build
+/tools/build
+/mod-processor/build
+/build
+*.hprof
+hs_err_pid*
+replay_pid*
+
+## Gradle
+/local.properties
+.gradle/
+gradle-app.setting
+
+## IntelliJ
+.idea/
+*.iml
+/*/out
+
+## Python
+**/__pycache__
+
+## Unreal Engine
+/.vs
+/.vsconfig
+/Binaries
+/Intermediate
+/Saved
+/DerivedDataCache
+
+/Config/jun.xml
+/Config/DefaultEditor.ini
+
+/Plugins/*/Binaries
+/Plugins/*/Intermediate
+/Plugins/*/.vscode
+/Plugins/JunPluginSkiaTree/skia-tree/target
+/Plugins/jdk-21
+/Plugins/RuntimeMeshComponent
+
+/Build
+/Deploy
+
+# Unreal content
+/Content/500_skill_icons
+/Content/Bunker
+/Content/CyberpunkIndustries
+/Content/Dystopian_Drones
+/Content/fantasy_rpg_cursors_silver
+/Content/IndustryPropsPack6
+/Content/M5VFXVOL2
+/Content/MediumMechStriker
+/Content/ModularLowPolyRobots
+/Content/Pixabay
+/Content/ResearchCenter
+/Content/sA_ShootingVfxPack
+/Content/Sci-Fi_Door
+/Content/ScienceLab
+/Content/StarterContent
+
+# Gimp
+/tools/GIMP 2/var/cache
+*.cache-8
+
+## Houdini
+/houdini/backup
+
+/Resources
+
+# GUI Graphics
+/gui-graphics/derived-icons
+/gui-graphics/generated
+
+*.pyc
+pygimp.interp
+
+yarn.lock
+
+/core/src/main/resources/Images/generated

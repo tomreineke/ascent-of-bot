@@ -1,0 +1,29 @@
+[package]
+name = "skiatree"
+version = "0.0.1"
+edition = "2021"
+build = "build.rs"
+
+[lib]
+crate-type = ["lib", "cdylib"]
+
+[dependencies]
+anyhow = "1.0.58"
+backtrace = "0.3.67"
+enumset = "1.0.12"
+itertools = "0.10.5"
+lazy_static = "1.4.0"
+nalgebra = "0.32.2"
+num = "0.4.0"
+rand = "0.8.5"
+skia-safe = { version = "0.64.0", features = ["d3d", "textlayout"] }
+smallvec = "1.9.0"
+slotmap = "1.0.6"
+static_assertions = "1.1.0"
+tracing = { version = "0.1.37", features = ["max_level_off", "release_max_level_off"] }
+winapi = { version = "0.3.9", features = ["winerror", "d3dcommon", "d3d12sdklayers"] }
+wio = "0.2.2"
+
+[build-dependencies]
+anyhow = "1.0.58"
+cbindgen = "0.24.3"

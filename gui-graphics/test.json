@@ -1,0 +1,16 @@
+{
+    "output_path": "generated",
+    "gui_sizes": {
+        "Full": null,
+        "1": [91, 91],
+        "2": [128, 128],
+        "3": [256, 256]
+    },
+    "input": [
+        {
+            "name": "wolverine-claws",
+            "svg": "icons/wolverine-claws.svg",
+            "size": 300
+        }
+    ]
+}

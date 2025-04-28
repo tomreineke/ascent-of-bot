@@ -1,0 +1,15 @@
+{
+    "output_path": "generated",
+    "gui_sizes": {
+        "Full": null,
+        "1": 0.168,
+        "2": 0.237,
+        "3": 0.474
+    },
+    "input": [
+        {
+            "name": "energy",
+            "icon": "tmp_output/3625_17_Components_element_Gage_energy_energy_blue.png"
+        }
+    ]
+}

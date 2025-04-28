@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "Jun Plugin SkiaTree",
+	"Description": "Provides Skia wrappers for Jun",
+	"Category": "Examples",
+	"CreatedBy": "Sobyg UG (haftungsbeschränkt)",
+	"CreatedByURL": "https://sobyg.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "JunPluginSkiaTree",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "JunPlugin",
+            "Enabled": true
+		}
+	]
+}
