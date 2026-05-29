@@ -21,13 +21,13 @@ import com.cerebrallychallenged.hypogean.model.attribute.SimpleIntAttribute
 import com.cerebrallychallenged.hypogean.model.base.Equipment
 import com.cerebrallychallenged.hypogean.model.base.props
 import com.cerebrallychallenged.hypogean.model.cascade.CausalChange
+import com.cerebrallychallenged.hypogean.model.cascade.EffectResult
 import com.cerebrallychallenged.hypogean.model.cellFilling
 import com.cerebrallychallenged.hypogean.model.name
 import com.cerebrallychallenged.hypogean.model.richtext.RichText
 import com.cerebrallychallenged.hypogean.model.richtext.richText
 import com.cerebrallychallenged.hypogean.rays.HitResult
 import com.cerebrallychallenged.hypogean.vanilla.attributes.icon
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectResult
 import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectiveDelta
 import com.cerebrallychallenged.hypogean.vanilla.cascade.showHealthChangesInDamageReport
 import com.cerebrallychallenged.hypogean.vanilla.factions.ProtagonistFaction

@@ -4,6 +4,8 @@ import com.cerebrallychallenged.hypogean.model.attribute.Attribute
 import com.cerebrallychallenged.hypogean.model.attribute.attribute
 import com.cerebrallychallenged.hypogean.model.effect.StatusEffectWithIntensity
 import com.cerebrallychallenged.hypogean.model.effect.StatusEffectWithIntensityAndDuration
+import com.cerebrallychallenged.hypogean.model.base.equippedItems
+import com.cerebrallychallenged.hypogean.model.effect.EffectKindSet
 import com.cerebrallychallenged.hypogean.vanilla.attributes.health
 
 // When loading save games it can happen that an entity is alive, even though
@@ -72,6 +74,34 @@ const val DEFAULT_NAME: String = "<unnamed>"
  * User-readable name for this entity.
  */
 var Entity.name: String by attribute(DEFAULT_NAME)
+
+/**
+ * When `true`, this entity cannot take effect, i.e., is completely immune against all effect types.
+ */
+var Entity.isIndestructible: Boolean by attribute(false)
+
+/**
+ * Entities potentially protecting their bearer such as status effects and equipped items.
+ */
+val Entity.providingEntities: Sequence<Entity>
+    get() = sequence {
+        yieldAll(statusEffects)
+        if (this@providingEntities is Actor) {
+            yieldAll(equippedItems)
+        }
+    }
+
+/**
+ * The entity is completely immune against those effect types.
+ * (protection for self)
+ */
+var Entity.effectImmunities: EffectKindSet by attribute(EffectKindSet.Empty)
+
+/**
+ * The entity (equipped item or status effect) provides complete immunity for its bearer against those effect types.
+ * (protection for others)
+ */
+var Entity.providedEffectImmunities: EffectKindSet by attribute(EffectKindSet.Empty)
 
 inline fun <reified T : Entity> Entity.checkedType(): T
         = this as? T ?: modelError("Entity with id $id is no ${T::class}")

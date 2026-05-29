@@ -8,6 +8,7 @@ import com.cerebrallychallenged.hypogean.model.attribute.attribute
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
 import com.cerebrallychallenged.hypogean.model.cascade.CausalChange
 import com.cerebrallychallenged.hypogean.model.cascade.EffectConsequence
+import com.cerebrallychallenged.hypogean.model.cascade.EffectResult
 import com.cerebrallychallenged.hypogean.vanilla.attributes.Energy
 import com.cerebrallychallenged.hypogean.vanilla.attributes.energy
 import com.cerebrallychallenged.hypogean.vanilla.factions.ProtagonistFaction

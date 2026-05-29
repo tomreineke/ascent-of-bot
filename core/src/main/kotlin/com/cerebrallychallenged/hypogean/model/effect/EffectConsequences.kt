@@ -3,7 +3,7 @@ package com.cerebrallychallenged.hypogean.model.effect
 import com.cerebrallychallenged.hypogean.modding.Feature
 import com.cerebrallychallenged.hypogean.model.Entity
 import com.cerebrallychallenged.hypogean.model.cascade.EffectConsequence
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectResult
+import com.cerebrallychallenged.hypogean.model.cascade.EffectResult
 import it.unimi.dsi.fastutil.objects.Object2IntArrayMap
 import it.unimi.dsi.fastutil.objects.Object2IntMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap

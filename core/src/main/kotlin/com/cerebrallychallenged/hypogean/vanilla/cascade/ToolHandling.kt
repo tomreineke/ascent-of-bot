@@ -3,6 +3,7 @@ package com.cerebrallychallenged.hypogean.vanilla.cascade
 import com.cerebrallychallenged.hypogean.model.Item
 import com.cerebrallychallenged.hypogean.model.activeActor
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.Effect
 import com.cerebrallychallenged.hypogean.model.effect.EffectKind
 import com.cerebrallychallenged.hypogean.model.effect.MutableEffectModifiers

@@ -5,6 +5,7 @@ import com.cerebrallychallenged.hypogean.model.Periodic
 import com.cerebrallychallenged.hypogean.model.base.equippedItems
 import com.cerebrallychallenged.hypogean.model.base.presentProps
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.Effect
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifier
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
@@ -15,7 +16,6 @@ import com.cerebrallychallenged.hypogean.vanilla.attributes.energyCharging
 import com.cerebrallychallenged.hypogean.vanilla.attributes.energyProduction
 import com.cerebrallychallenged.hypogean.vanilla.attributes.health
 import com.cerebrallychallenged.hypogean.vanilla.attributes.passiveEnergyConsumption
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.EnergyConsumption
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealDirectEffect
 import com.cerebrallychallenged.hypogean.vanilla.effects.EnergyCharging

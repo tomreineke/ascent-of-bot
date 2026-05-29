@@ -3,9 +3,9 @@ package com.cerebrallychallenged.hypogean.vanilla.periodic
 import com.cerebrallychallenged.hypogean.model.Entity
 import com.cerebrallychallenged.hypogean.model.Periodic
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
 import com.cerebrallychallenged.hypogean.model.effect.directEffect
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealDirectEffect
 
 object StatusEffectPeriodic : Periodic {

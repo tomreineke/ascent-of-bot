@@ -6,6 +6,7 @@ import com.cerebrallychallenged.hypogean.model.Faction.Relation.HOSTILE
 import com.cerebrallychallenged.hypogean.model.action.InitiativeCost
 import com.cerebrallychallenged.hypogean.model.base.equippedItems
 import com.cerebrallychallenged.hypogean.model.base.props
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.cell
 import com.cerebrallychallenged.hypogean.model.dialog.Dialog
 import com.cerebrallychallenged.hypogean.model.dialog.RoleMap
@@ -18,7 +19,6 @@ import com.cerebrallychallenged.hypogean.npc.behavior
 import com.cerebrallychallenged.hypogean.vanilla.attributes.dialog
 import com.cerebrallychallenged.hypogean.vanilla.attributes.relativeHealth
 import com.cerebrallychallenged.hypogean.vanilla.behavior.StandardBehavior
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealDirectEffect
 import com.cerebrallychallenged.hypogean.vanilla.effects.Healing
 import com.cerebrallychallenged.hypogean.vanilla.factions.DeepDrillingCorpFaction

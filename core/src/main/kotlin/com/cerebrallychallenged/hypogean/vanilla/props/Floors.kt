@@ -6,10 +6,10 @@ import com.cerebrallychallenged.hypogean.model.Initializer
 import com.cerebrallychallenged.hypogean.model.base.Prop
 import com.cerebrallychallenged.hypogean.model.effect.EffectKind
 import com.cerebrallychallenged.hypogean.model.effect.any
+import com.cerebrallychallenged.hypogean.model.effectImmunities
 import com.cerebrallychallenged.hypogean.vanilla.attributes.asset
 import com.cerebrallychallenged.hypogean.vanilla.attributes.visibleIfLostSight
 import com.cerebrallychallenged.hypogean.vanilla.blocks.BlockMaterials
-import com.cerebrallychallenged.hypogean.vanilla.cascade.effectImmunities
 import com.cerebrallychallenged.hypogean.vanilla.refs.Hypogean
 import com.cerebrallychallenged.hypogean.vanilla.refs.StarterContent
 import com.cerebrallychallenged.jun.asset.CompositeAsset

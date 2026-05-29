@@ -1,9 +1,9 @@
 package com.cerebrallychallenged.hypogean.model.effect
 
 import com.cerebrallychallenged.hypogean.model.Entity
-import com.cerebrallychallenged.hypogean.vanilla.cascade.effectImmunities
-import com.cerebrallychallenged.hypogean.vanilla.cascade.providedEffectImmunities
-import com.cerebrallychallenged.hypogean.vanilla.cascade.providingEntities
+import com.cerebrallychallenged.hypogean.model.effectImmunities
+import com.cerebrallychallenged.hypogean.model.providedEffectImmunities
+import com.cerebrallychallenged.hypogean.model.providingEntities
 import java.util.Collections
 import java.util.EnumMap
 

@@ -2,6 +2,7 @@ package com.cerebrallychallenged.hypogean.vanilla.cascade
 
 import com.cerebrallychallenged.hypogean.model.LocatedEntity
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.MutableEffectModifiers
 import com.cerebrallychallenged.hypogean.model.effect.areaEffect
 import com.cerebrallychallenged.hypogean.model.effect.causedStatusEffects

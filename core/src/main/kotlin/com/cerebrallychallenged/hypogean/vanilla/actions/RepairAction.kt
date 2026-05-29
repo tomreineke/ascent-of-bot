@@ -12,6 +12,7 @@ import com.cerebrallychallenged.hypogean.model.attribute.IntProperty
 import com.cerebrallychallenged.hypogean.model.base.Equipment
 import com.cerebrallychallenged.hypogean.model.base.ToolSlot
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeContext
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.cascade.cascadeBlock
 import com.cerebrallychallenged.hypogean.model.cascade.executeCascade
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
@@ -21,7 +22,6 @@ import com.cerebrallychallenged.hypogean.util.collections.WorldStatistic
 import com.cerebrallychallenged.hypogean.util.collections.WorldStatisticRecorder
 import com.cerebrallychallenged.hypogean.vanilla.actors.Robot
 import com.cerebrallychallenged.hypogean.vanilla.attributes.initiativeCost
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.causeStatusEffects
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealDirectEffect
 import com.cerebrallychallenged.hypogean.vanilla.cascade.handleEquipment

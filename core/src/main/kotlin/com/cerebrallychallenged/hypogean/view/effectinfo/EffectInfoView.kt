@@ -15,11 +15,11 @@ import com.cerebrallychallenged.hypogean.model.Entity
 import com.cerebrallychallenged.hypogean.model.FactionContext
 import com.cerebrallychallenged.hypogean.model.attribute.SimpleIntAttribute
 import com.cerebrallychallenged.hypogean.model.cascade.CausalChange
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.DamageKind
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
 import com.cerebrallychallenged.hypogean.model.richtext.toRichText
 import com.cerebrallychallenged.hypogean.vanilla.attributes.icon
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectiveDelta
 import com.cerebrallychallenged.hypogean.vanilla.cascade.EnergyConsumption
 import com.cerebrallychallenged.hypogean.vanilla.effects.EnergyCharging

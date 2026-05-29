@@ -6,13 +6,13 @@ import com.cerebrallychallenged.hypogean.model.action.InitiativeCost
 import com.cerebrallychallenged.hypogean.model.attribute.attribute
 import com.cerebrallychallenged.hypogean.model.base.heading
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeContext
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.cascade.cascadeBlock
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
 import com.cerebrallychallenged.hypogean.model.effect.directEffect
 import com.cerebrallychallenged.hypogean.model.name
 import com.cerebrallychallenged.hypogean.vanilla.attributes.icon
 import com.cerebrallychallenged.hypogean.vanilla.attributes.range
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealDirectEffect
 import com.cerebrallychallenged.hypogean.vanilla.refs.Hypogean
 import com.cerebrallychallenged.hypogean.vanilla.refs.SkillIcons

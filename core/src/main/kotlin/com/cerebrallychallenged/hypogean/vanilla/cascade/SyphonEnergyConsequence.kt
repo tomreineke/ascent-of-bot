@@ -5,6 +5,7 @@ import com.cerebrallychallenged.hypogean.model.activeActor
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
 import com.cerebrallychallenged.hypogean.model.cascade.CausalChange
 import com.cerebrallychallenged.hypogean.model.cascade.EffectConsequence
+import com.cerebrallychallenged.hypogean.model.cascade.EffectResult
 import com.cerebrallychallenged.hypogean.vanilla.attributes.energy
 import kotlin.math.min
 

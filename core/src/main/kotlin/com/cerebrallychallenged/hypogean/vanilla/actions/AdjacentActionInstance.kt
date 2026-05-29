@@ -8,11 +8,11 @@ import com.cerebrallychallenged.hypogean.model.action.ActionInstance
 import com.cerebrallychallenged.hypogean.model.action.InitiativeCost
 import com.cerebrallychallenged.hypogean.model.base.Equipment
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeContext
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.cascade.cascadeBlock
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
 import com.cerebrallychallenged.hypogean.model.effect.directEffect
 import com.cerebrallychallenged.hypogean.vanilla.attributes.initiativeCost
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealDirectEffect
 import com.cerebrallychallenged.hypogean.vanilla.cascade.handleEquipment
 import com.cerebrallychallenged.hypogean.vanilla.cascade.presentEntities

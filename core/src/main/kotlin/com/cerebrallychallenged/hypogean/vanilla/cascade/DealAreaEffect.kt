@@ -6,6 +6,7 @@ import com.cerebrallychallenged.hypogean.model.Entity
 import com.cerebrallychallenged.hypogean.model.LocatedEntity
 import com.cerebrallychallenged.hypogean.model.base.presentProps
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.AreaEffect
 import com.cerebrallychallenged.hypogean.model.effect.EffectKind
 import com.cerebrallychallenged.hypogean.model.effect.EffectModifier
@@ -73,7 +74,7 @@ data class EffectAttenuation(
 
 
 context(CascadeBlock)
-suspend fun dealAreaEffects(
+fun dealAreaEffects(
     areaEffect: AreaEffect,
     explodingEntity: Entity?,
     center: Vec2i,

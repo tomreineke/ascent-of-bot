@@ -5,8 +5,8 @@ import com.cerebrallychallenged.hypogean.model.Initializer
 import com.cerebrallychallenged.hypogean.model.LocatedEntity
 import com.cerebrallychallenged.hypogean.model.StatusEffect
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
+import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.model.effect.destructionEffect
-import com.cerebrallychallenged.hypogean.vanilla.cascade.EffectReason
 import com.cerebrallychallenged.hypogean.vanilla.cascade.dealAreaEffects
 import com.cerebrallychallenged.hypogean.vanilla.cascade.performEntityDestruction
 import com.cerebrallychallenged.hypogean.vanilla.props.LandMine.Companion.TRIGGER_RANGE

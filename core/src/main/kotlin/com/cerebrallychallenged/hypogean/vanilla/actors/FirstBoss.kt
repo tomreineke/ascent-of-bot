@@ -6,6 +6,7 @@ import com.cerebrallychallenged.hypogean.model.Initializer
 import com.cerebrallychallenged.hypogean.model.containment.insert
 import com.cerebrallychallenged.hypogean.model.diameter
 import com.cerebrallychallenged.hypogean.model.effect.EffectKindSet
+import com.cerebrallychallenged.hypogean.model.effectImmunities
 import com.cerebrallychallenged.hypogean.model.height
 import com.cerebrallychallenged.hypogean.model.name
 import com.cerebrallychallenged.hypogean.npc.behavior
@@ -18,7 +19,6 @@ import com.cerebrallychallenged.hypogean.vanilla.attributes.icon
 import com.cerebrallychallenged.hypogean.vanilla.attributes.maxEnergy
 import com.cerebrallychallenged.hypogean.vanilla.attributes.maxHealth
 import com.cerebrallychallenged.hypogean.vanilla.behavior.FirstBossBehavior
-import com.cerebrallychallenged.hypogean.vanilla.cascade.effectImmunities
 import com.cerebrallychallenged.hypogean.vanilla.cascade.showEnergyChangesInDamageReport
 import com.cerebrallychallenged.hypogean.vanilla.effects.BluntDamage
 import com.cerebrallychallenged.hypogean.vanilla.effects.ExplosionDamage

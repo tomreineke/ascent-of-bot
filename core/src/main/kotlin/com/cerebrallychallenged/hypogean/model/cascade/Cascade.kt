@@ -105,7 +105,7 @@ suspend fun <R> cascadeBlock(f: suspend CascadeBlock.() -> R): R {
 abstract class EffectConsequence(
     val target: Entity,
     val causalChange: CausalChange
-) : suspend context(CascadeBlock) () -> Unit {
+) : suspend (CascadeBlock) -> Unit {
     final override suspend fun invoke(block: CascadeBlock) {
         val statisticRecorder = block.statisticRecorder
         if (statisticRecorder != null) {

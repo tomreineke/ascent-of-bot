@@ -25,6 +25,9 @@ import com.cerebrallychallenged.hypogean.model.dialog.DialogRoles
 import com.cerebrallychallenged.hypogean.model.dialog.Dialogs
 import com.cerebrallychallenged.hypogean.model.effect.EffectConsequences
 import com.cerebrallychallenged.hypogean.model.effect.EffectKinds
+import com.cerebrallychallenged.hypogean.model.effectImmunities
+import com.cerebrallychallenged.hypogean.model.isIndestructible
+import com.cerebrallychallenged.hypogean.model.providedEffectImmunities
 import com.cerebrallychallenged.hypogean.npc.Behaviors
 import com.cerebrallychallenged.hypogean.rays.BlockerValueExtractors
 import com.cerebrallychallenged.hypogean.util.collections.addAll
@@ -126,10 +129,7 @@ import com.cerebrallychallenged.hypogean.vanilla.cascade.Falloffs
 import com.cerebrallychallenged.hypogean.vanilla.cascade.FlatFalloff
 import com.cerebrallychallenged.hypogean.vanilla.cascade.LinearFalloff
 import com.cerebrallychallenged.hypogean.vanilla.cascade.SyphonEnergyConsequence
-import com.cerebrallychallenged.hypogean.vanilla.cascade.effectImmunities
-import com.cerebrallychallenged.hypogean.vanilla.cascade.isIndestructible
 import com.cerebrallychallenged.hypogean.vanilla.cascade.needsEnergyForInitiative
-import com.cerebrallychallenged.hypogean.vanilla.cascade.providedEffectImmunities
 import com.cerebrallychallenged.hypogean.vanilla.cascade.showEnergyChangesInDamageReport
 import com.cerebrallychallenged.hypogean.vanilla.cascade.showEnergyChangesWithOverheadText
 import com.cerebrallychallenged.hypogean.vanilla.cascade.showHealthChangesInDamageReport
