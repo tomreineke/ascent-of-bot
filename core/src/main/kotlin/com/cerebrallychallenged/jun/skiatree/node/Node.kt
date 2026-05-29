@@ -39,7 +39,7 @@ open class Node private constructor(
     internal val resource: CloseableKey,
 ) : AutoCloseable by resource {
     companion object {
-        private val globalNodes: MutableList<WeakReference<Node>?> = arrayListOf()
+        private val globalNodes: MutableMap<Long, WeakReference<Node>> = mutableMapOf()
 
         @JvmStatic
         private val nodeDelete = function(
@@ -249,7 +249,7 @@ open class Node private constructor(
             "skiatree_node_set_is_selected"
         )
 
-        internal fun nodeForKey(key: Long): Node? = globalNodes.elementAtOrNull(CloseableKey.indexFor(key))?.get()
+        internal fun nodeForKey(key: Long): Node? = globalNodes[key]?.get()
     }
 
     constructor() : this(
@@ -259,12 +259,8 @@ open class Node private constructor(
     )
 
     init {
-        val index = resource.index
-        repeat(index + 1 - globalNodes.size) {
-            globalNodes.add(null)
-        }
         @Suppress("LeakingThis") // globalNodes is used only in the game thread and is not accessed during construction.
-        globalNodes[index] = WeakReference(this)
+        globalNodes[resource.key] = WeakReference(this)
     }
 
     var parent: Node? = null
