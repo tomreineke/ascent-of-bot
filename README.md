@@ -2,6 +2,7 @@
 The aim of this project was to create a X-COM like, round based, tactical game. The project is written in Kotlin and 
 uses the Unreal engine via JNI. The UI elements are integrated by using a dll that was created by 
 Plugins/JunPluginSkiaTree in Rust. This Rust plugin is based on [Skia](https://skia.org/).
+The Kotlin side of this integration can be found in the [SkiaTree package](core/src/main/kotlin/com/cerebrallychallenged/jun/skiatree/README.md).
 
 Currently, the first level is playable. You can see gameplay footage here:
 
