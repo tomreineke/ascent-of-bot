@@ -1,8 +1,3 @@
-#![feature(result_option_inspect)]
-#![feature(vec_into_raw_parts)]
-#![feature(local_key_cell_methods)]
-#![feature(int_roundings)]
-
 #![allow(dead_code)]
 
 extern crate core;
