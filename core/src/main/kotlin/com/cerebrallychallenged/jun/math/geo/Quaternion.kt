@@ -9,6 +9,7 @@ import java.io.DataOutput
 import kotlin.math.acos
 import kotlin.math.sin
 import kotlin.math.sqrt
+import com.cerebrallychallenged.jun.log.log
 
 data class AxisAngle(val axis: Vec3f, val angle: Angle)
 
@@ -40,6 +41,16 @@ class Quaternion internal constructor(private val vector: Vec4f) {
             return Quaternion((normalAxis * sin(halfAngle)).append(cos(halfAngle)))
         }
 
+        /**
+         * Tries to orthonormalize the input 3x3 matrix using
+         * a polar-decomposition-like iterative method to extract the closest
+         * orthogonal rotation matrix. This is more robust than simply
+         * normalizing each column separately when the input contains
+         * non-uniform scale or shear.
+         * If we broke out because of a singular determinant, fall back to
+         * simple per-column normalization to make sure we still produce
+         * a sensible quaternion.
+         */
         private fun fromRotationMatrix(
                 mat00: Float, mat01: Float, mat02: Float,
                 mat10: Float, mat11: Float, mat12: Float,
@@ -54,27 +65,92 @@ class Quaternion internal constructor(private val vector: Vec4f) {
             var m20 = mat20
             var m21 = mat21
             var m22 = mat22
-            // TODO[A] direct implementation
-            var lengthSquared = m00 * m00 + m10 * m10 + m20 * m20
-            if (lengthSquared != 1.0f && lengthSquared != 0.0f) {
-                lengthSquared = 1.0f / sqrt(lengthSquared)
-                m00 *= lengthSquared
-                m10 *= lengthSquared
-                m20 *= lengthSquared
-            }
-            lengthSquared = m01 * m01 + m11 * m11 + m21 * m21
-            if (lengthSquared != 1.0f && lengthSquared != 0.0f) {
-                lengthSquared = 1.0f / sqrt(lengthSquared)
-                m01 *= lengthSquared
-                m11 *= lengthSquared
-                m21 *= lengthSquared
-            }
-            lengthSquared = m02 * m02 + m12 * m12 + m22 * m22
-            if (lengthSquared != 1.0f && lengthSquared != 0.0f) {
-                lengthSquared = 1.0f / sqrt(lengthSquared)
-                m02 *= lengthSquared
-                m12 *= lengthSquared
-                m22 *= lengthSquared
+            run {
+                val maxIterations = 10
+                val tol = 1e-6f
+                var i = 0
+                while (i < maxIterations) {
+                    // compute inverse of current matrix
+                    val det = m00 * (m11 * m22 - m12 * m21) - m01 * (m10 * m22 - m12 * m20) + m02 * (m10 * m21 - m11 * m20)
+                    if (kotlin.math.abs(det) < 1e-9f) {
+                        // matrix is singular or nearly so - fallback to simple column normalization
+                        break
+                    }
+
+                    val inv00 = (m11 * m22 - m12 * m21) / det
+                    val inv01 = (m02 * m21 - m01 * m22) / det
+                    val inv02 = (m01 * m12 - m02 * m11) / det
+                    val inv10 = (m12 * m20 - m10 * m22) / det
+                    val inv11 = (m00 * m22 - m02 * m20) / det
+                    val inv12 = (m02 * m10 - m00 * m12) / det
+                    val inv20 = (m10 * m21 - m11 * m20) / det
+                    val inv21 = (m01 * m20 - m00 * m21) / det
+                    val inv22 = (m00 * m11 - m01 * m10) / det
+
+                    // transpose the inverse (i.e. compute inverse^T)
+                    val invT00 = inv00
+                    val invT01 = inv10
+                    val invT02 = inv20
+                    val invT10 = inv01
+                    val invT11 = inv11
+                    val invT12 = inv21
+                    val invT20 = inv02
+                    val invT21 = inv12
+                    val invT22 = inv22
+
+                    // compute next iterate: 0.5 * (M + invT)
+                    val n00 = 0.5f * (m00 + invT00)
+                    val n01 = 0.5f * (m01 + invT01)
+                    val n02 = 0.5f * (m02 + invT02)
+                    val n10 = 0.5f * (m10 + invT10)
+                    val n11 = 0.5f * (m11 + invT11)
+                    val n12 = 0.5f * (m12 + invT12)
+                    val n20 = 0.5f * (m20 + invT20)
+                    val n21 = 0.5f * (m21 + invT21)
+                    val n22 = 0.5f * (m22 + invT22)
+
+                    // check convergence: max absolute change
+                    val diff = kotlin.math.max(
+                            kotlin.math.max(kotlin.math.abs(n00 - m00), kotlin.math.abs(n01 - m01)),
+                            kotlin.math.max(kotlin.math.abs(n02 - m02), kotlin.math.abs(n10 - m10)))
+                    val diff2 = kotlin.math.max(
+                            kotlin.math.max(kotlin.math.abs(n11 - m11), kotlin.math.abs(n12 - m12)),
+                            kotlin.math.max(kotlin.math.abs(n20 - m20), kotlin.math.abs(n21 - m21)))
+                    val diff3 = kotlin.math.max(kotlin.math.abs(n22 - m22), 0.0f)
+                    val maxDiff = kotlin.math.max(diff, kotlin.math.max(diff2, diff3))
+
+                    m00 = n00; m01 = n01; m02 = n02
+                    m10 = n10; m11 = n11; m12 = n12
+                    m20 = n20; m21 = n21; m22 = n22
+
+                    if (maxDiff < tol) break
+                    i++
+                }
+
+                // Fallback algorithm
+                if (i == 0) {
+                    var lengthSquared = m00 * m00 + m10 * m10 + m20 * m20
+                    if (lengthSquared != 1.0f && lengthSquared != 0.0f) {
+                        lengthSquared = 1.0f / sqrt(lengthSquared)
+                        m00 *= lengthSquared
+                        m10 *= lengthSquared
+                        m20 *= lengthSquared
+                    }
+                    lengthSquared = m01 * m01 + m11 * m11 + m21 * m21
+                    if (lengthSquared != 1.0f && lengthSquared != 0.0f) {
+                        lengthSquared = 1.0f / sqrt(lengthSquared)
+                        m01 *= lengthSquared
+                        m11 *= lengthSquared
+                        m21 *= lengthSquared
+                    }
+                    lengthSquared = m02 * m02 + m12 * m12 + m22 * m22
+                    if (lengthSquared != 1.0f && lengthSquared != 0.0f) {
+                        lengthSquared = 1.0f / sqrt(lengthSquared)
+                        m02 *= lengthSquared
+                        m12 *= lengthSquared
+                        m22 *= lengthSquared
+                    }
+                }
             }
 
             val t = m00 + m11 + m22
