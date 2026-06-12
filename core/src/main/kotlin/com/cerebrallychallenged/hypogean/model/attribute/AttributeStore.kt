@@ -76,16 +76,9 @@ internal class AttributeStore(rulebook: Rulebook, private val world: World) {
         while (referrerIterator.hasNext()) {
             val pair = referrerIterator.nextLong().separateBits()
             log.info { "trying to remove referring entity with ID ${pair.second}"}
-            // FIXME the following if statement seems to hide a deeper problem
-            // It was added to prevent the game from crashing in the following scenario:
-            // Use FirstLevel, set health of the MiningRobot to 1, make a quick move to the north, so that you
-            // encounter the first enemy. Then use self repair. When deadly hit by the first enemy, the game crashes.
-            if (pair.second != removedEntity.id) {
-                val (attribute, referringEntity) = pair.toAttributeAndEntity()
-                log.info { "and name ${referringEntity.name}" }
-                removeAttributeReference(referringEntity, attribute, removedEntity)
-            }
-
+            val (attribute, referringEntity) = pair.toAttributeAndEntity()
+            log.info { "and name ${referringEntity.name}" }
+            removeAttributeReference(referringEntity, attribute, removedEntity)
         }
         for (attribute in removedEntity.changedAttributes) {
             attributeValues.remove(key(attribute, removedEntity))
