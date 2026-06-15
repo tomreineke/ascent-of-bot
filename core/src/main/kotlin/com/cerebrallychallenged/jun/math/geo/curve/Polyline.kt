@@ -4,6 +4,8 @@ import com.cerebrallychallenged.jun.math.Angle
 import com.cerebrallychallenged.jun.math.clamp
 import com.cerebrallychallenged.jun.math.geo.*
 import com.cerebrallychallenged.jun.math.interpolate
+import kotlin.math.abs
+import kotlin.math.ceil
 import java.util.*
 
 private const val THRESHOLD = 0.00000001f
@@ -112,12 +114,41 @@ class Polyline<T>(
         fun constant(value: Quaternion, duration: Float = 0.0f): Polyline<Quaternion>
                 = from(value).stayFor(duration).build()
 
-        fun linearZRotation(fromAngle: Angle, toAngle: Angle, speed: Float = 1.0f): Polyline<Quaternion> =
+        enum class ZRotationInterpolation { SHORTEST, CLOCKWISE, COUNTERCLOCKWISE }
+
+        fun linearZRotation(fromAngle: Angle, toAngle: Angle, speed: Float = 1.0f,
+                             variant: ZRotationInterpolation = ZRotationInterpolation.SHORTEST): Polyline<Quaternion> =
                 buildPolyline(Quaternion.fromAxisAngle(Vec3f.UNIT_Z, fromAngle)) {
                     this.speed = speed
-                    //FIXME[A] interpolation variant for clockwise/counterclockwise/shortest rotation
-//                    lineTo(Quaternion.fromAxisAngle(Vec3f.UNIT_Z, interpolate(fromAngle, 0.5f, toAngle)))
-                    lineTo(Quaternion.fromAxisAngle(Vec3f.UNIT_Z, toAngle))
+
+                    when (variant) {
+                        ZRotationInterpolation.SHORTEST ->
+                            lineTo(Quaternion.fromAxisAngle(Vec3f.UNIT_Z, toAngle))
+
+                        ZRotationInterpolation.CLOCKWISE, ZRotationInterpolation.COUNTERCLOCKWISE -> {
+                            val from = fromAngle
+                            val to = toAngle
+
+                            // unsigned delta in [0, 2PI)
+                            val unsignedDelta = (to - from).floorMod(Angle.DEGREE_360)
+
+                            val signedDelta = when (variant) {
+                                ZRotationInterpolation.CLOCKWISE -> unsignedDelta
+                                ZRotationInterpolation.COUNTERCLOCKWISE -> unsignedDelta - Angle.DEGREE_360
+                                else -> unsignedDelta
+                            }
+
+                            val deltaF = signedDelta.toRadians()
+                            val maxStep = (Angle.DEGREE_180 * 0.99f).toRadians() // keep each segment < PI
+                            val steps = kotlin.math.max(1, ceil(abs(deltaF) / maxStep).toInt())
+
+                            for (i in 1..steps) {
+                                val t = i.toFloat() / steps.toFloat()
+                                val intermediate = from + signedDelta * t
+                                lineTo(Quaternion.fromAxisAngle(Vec3f.UNIT_Z, intermediate))
+                            }
+                        }
+                    }
                 }
 
         fun constantZRotation(angle: Angle, duration: Float = 0.0f): Polyline<Quaternion> =
