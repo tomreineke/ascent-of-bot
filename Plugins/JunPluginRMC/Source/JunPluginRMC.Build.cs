@@ -9,7 +9,7 @@ namespace UnrealBuildTool.Rules
             DefaultBuildSettings = BuildSettingsVersion.V2;
             IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_1;
             CppStandard = CppStandardVersion.Cpp17;
-			string JdkExactName = "jdk-16.0.2+7";
+			string JdkExactName = "jdk-21";
 			string JvmIncludeDirectory = Path.Combine(ModuleDirectory, "..", "..", JdkExactName, "include");
 			PublicIncludePaths.AddRange(new string[]
 			{
