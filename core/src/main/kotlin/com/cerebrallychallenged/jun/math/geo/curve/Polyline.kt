@@ -19,6 +19,7 @@ class Polyline<T>(
         val length: Float,
         override val metric: Metric<T>
 ) : Curve<T>, (Float) -> T by function {
+    enum class ZRotationInterpolation { SHORTEST, CLOCKWISE, COUNTERCLOCKWISE }
     class Builder<T>(
             private val startPoint: T,
             private val startTime: Float,
@@ -113,8 +114,6 @@ class Polyline<T>(
 
         fun constant(value: Quaternion, duration: Float = 0.0f): Polyline<Quaternion>
                 = from(value).stayFor(duration).build()
-
-        enum class ZRotationInterpolation { SHORTEST, CLOCKWISE, COUNTERCLOCKWISE }
 
         fun linearZRotation(fromAngle: Angle, toAngle: Angle, speed: Float = 1.0f,
                              variant: ZRotationInterpolation = ZRotationInterpolation.SHORTEST): Polyline<Quaternion> =
