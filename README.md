@@ -34,9 +34,22 @@ When you obtain all the assets used in the project the Content folder structure 
 4. After steps 2 and 3, the plugin folder structure should look like this:
 
    ![Folder structure](doc/plugins.png)
-5. Install [rustup](https://rustup.rs/) and execute ```rustup toolchain install nightly```
-6. In ```Plugins\JunPluginSkiaTree\skia-tree``` execute ```cargo build```
-7. Install Visual Code 2022 with Unreal und .Net properties.
+5. Install Visual Code 2022 with Unreal und .Net properties.
+
+![Outdated but necessary components](doc/vs-components.png)
+
+For the compatibility reasons with UE 5.1 we need these specific components in version 14.34.
+Make sure your Visual Studio folder looks like this:
+
+![MSVC installation on Windows](doc/vs-installation.png)
+
+Execute this in your Windows shell to set environment variables correctly:
+```
+C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools> .\VsDevCmd.bat -arch=x64
+```
+6. Install [rustup](https://rustup.rs/) and execute ```rustup toolchain install nightly```
+7. In ```Plugins\JunPluginSkiaTree\skia-tree``` execute ```cargo build```
+   Any build errors are probably related to a wrong/invalid VC installation (cf. point 5).
 8. Build the project with the following commands:
 ```
 gradle build
