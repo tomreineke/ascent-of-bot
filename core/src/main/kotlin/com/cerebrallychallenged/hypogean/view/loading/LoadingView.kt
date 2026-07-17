@@ -87,4 +87,8 @@ class LoadingView(context: ViewFactory.Context, private val tipsOfDay: List<Stri
             change.changes.forEach { it.accept(changeVisitor) }
         }
     }
+
+    override fun dispose() {
+        mainNode.detach()
+    }
 }

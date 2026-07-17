@@ -81,6 +81,50 @@ The following classes have been used to create the UI elements used in the game:
 * [SliceInventoryBox](tools/src/main/kotlin/com/cerebrallychallenged/hypogean/graphics/slicing/SliceInventoryBox.kt) 
 * [SliceViewFrame](tools/src/main/kotlin/com/cerebrallychallenged/hypogean/graphics/slicing/SliceViewFrame.kt)
 
+# Architecture and Application States
+
+This section describes the high-level architecture of the game, focusing on the state machine and UI management.
+
+## Application States
+
+The game's lifecycle is managed by an `ApplicationState` machine driven by `HypogeanApplicationFactory`. Each state is responsible for its own UI initialization, business logic, and transition to the next state.
+
+- **`MainMenuState`**: The entry point. Displays the main menu (Start Game, Load Game, etc.).
+- **`GameState`**: The core game loop. Manages the server/client connection, world loading, and the `ViewManager`.
+- **`LoadGameState`**: Displays a list of saved games to load.
+- **`ListWorldFactoriesState`**: A debug/dev state to select and start a specific level.
+
+## View Management
+
+In `GameState`, the UI and game world interaction are managed by the `ViewManager`. It coordinates several `View` implementations:
+
+- **`MapView`**: Handles the 3D world representation (Unreal Engine actors).
+- **`MenuView`**: The in-game menu (Continue, Save, Main Menu, Exit).
+- **`ActionBarView`**: Combat and interaction actions.
+- **`IniBarView`**: Initiative and turn order display.
+
+### View Lifecycle
+
+Views are created when `GameState` starts and are disposed of when it finishes. Disposal is critical for cleaning up GUI layers and Unreal Engine resources.
+
+More details:
+<details>
+<summary>View Lifecycle Diagram</summary>
+
+![View Lifecycle Diagram](doc/lifecycle.png)
+
+</details>
+
+## GUI Layer System
+
+The game uses a layered UI system (0-127). Standard layers are defined in `GuiLayer`:
+
+- **`Base` (Layer 0)**: Used by `MainMenuState` and background views.
+- **`LoadingView` (Layer 100)**: Displays the loading screen and obscures other layers.
+- **`Overlay`**: Used for menus and popups that should appear above everything else.
+
+When transitioning between states, all layers are typically cleared to ensure a clean visual state for the next component.
+
 # Credits
 For button icons from https://game-icons.net:
 * [lorc](https://lorcblog.blogspot.com/)

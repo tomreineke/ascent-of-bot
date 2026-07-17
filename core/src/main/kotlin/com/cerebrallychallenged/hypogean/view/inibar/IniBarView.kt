@@ -350,4 +350,8 @@ class IniBarView(context: ViewFactory.Context) : View, FactionContext by context
             }
         }
     }
+
+    override fun dispose() {
+        mainNode.detach()
+    }
 }

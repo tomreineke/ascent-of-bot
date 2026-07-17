@@ -55,7 +55,7 @@ internal class ViewManager private constructor(
     suspend fun run() = coroutineScope {
         var running = true
         JunManager.inputManager.inputListeners.add(::onInput)
-        launch {
+        val tickerJob = launch {
             JunManager.runTicker { deltaSeconds ->
                 viewModel.onTick(deltaSeconds)
                 for (view in views) {
@@ -64,7 +64,7 @@ internal class ViewManager private constructor(
                 running
             }
         }
-        launch {
+        val changesJob = launch {
             viewModel.changes.collect { change ->
                 val token = Any()
                 viewModel.pauseAnimation(token)
@@ -82,6 +82,14 @@ internal class ViewManager private constructor(
             client.worldUpdates.collect(viewModel::onChangeSchedule)
         } finally {
             running = false
+            tickerJob.cancel()
+            changesJob.cancel()
+            // If we don't remove the listener, the onInput function remains registered even after the game session ends.
+            // If we then start a new game, we would have two listeners active.
+            JunManager.inputManager.inputListeners.remove(::onInput)
+            for (view in views) {
+                view.dispose()
+            }
         }
     }
 

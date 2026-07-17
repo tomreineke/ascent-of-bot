@@ -3,6 +3,7 @@ package com.cerebrallychallenged.hypogean.client
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
+import com.cerebrallychallenged.jun.log.log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,8 +20,17 @@ internal fun CoroutineScope.launchSocketClient(clientConnector: ClientConnector,
                 output.flush()
             }
         }
-        while (true) {
-            val byteArray = ByteArray(input.readInt())
+        while (!clientConnector.isClosed) {
+            val length = try {
+                input.readInt()
+            } catch (e: Exception) {
+                if (!clientConnector.isClosed) {
+                    log.info { "SocketClient input channel closed with $e" }
+                    clientConnector.close()
+                }
+                break
+            }
+            val byteArray = ByteArray(length)
             input.readFully(byteArray)
             clientConnector.sendToClient(byteArray)
         }

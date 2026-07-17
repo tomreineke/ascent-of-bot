@@ -50,7 +50,11 @@ object HypogeanApplicationFactory : JunApplicationFactory {
 
             var applicationState: ApplicationState? = overrideGameState ?: MainMenuState()
             while (applicationState != null) {
-                applicationState = with(applicationState) { execute() }
+                applicationState = try {
+                    with(applicationState) { execute() }
+                } catch (_: Throwable) {
+                    null
+                }
             }
         }
     }

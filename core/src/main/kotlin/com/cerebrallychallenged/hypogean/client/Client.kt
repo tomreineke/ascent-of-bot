@@ -17,6 +17,7 @@ import com.cerebrallychallenged.hypogean.model.World
 import com.cerebrallychallenged.hypogean.model.action.ActionInstance
 import com.cerebrallychallenged.hypogean.model.action.ActionInstanceId
 import com.cerebrallychallenged.hypogean.model.action.ActionTable
+import com.cerebrallychallenged.jun.log.log
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
@@ -46,7 +47,10 @@ internal class Client(private val world: World, val faction: Faction) {
         senderToServer = Channel(UNLIMITED)
         val clientToServerMessages = senderToServer.consumeAsFlow()
 
-        connector = ClientConnector(serverToClient::trySend, clientToServerMessages)
+        connector = ClientConnector(serverToClient::trySend, clientToServerMessages) {
+            serverToClient.close()
+            senderToServer.close()
+        }
     }
 
     private val partialActionExpansionRequests =
@@ -74,7 +78,8 @@ internal class Client(private val world: World, val faction: Faction) {
     }
 
     val worldUpdates: Flow<ChangeScheduleDto> = serverToClientMessages.transform {
-        when (val message = world.kryo.deserializeFromByteArray<ServerToClientMessage>(it)) {
+        val message = world.kryo.deserializeFromByteArray<ServerToClientMessage>(it)
+        when (message) {
             is HelloClient -> {
                 clientId = message.clientId
                 sendToServer(ClaimFaction(faction))

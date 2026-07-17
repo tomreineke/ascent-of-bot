@@ -113,6 +113,10 @@ internal class ActiveActorIndicator private constructor(
         }
     }
 
+    fun dispose() {
+        node.dispose()
+    }
+
     private fun deactivate() {
         node.walkComponents<USceneComponent> { visibility = false }
         node.component.detachFromComponent(FDetachmentTransformRules.KeepRelativeTransform)

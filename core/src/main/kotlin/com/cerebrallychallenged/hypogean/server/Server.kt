@@ -11,6 +11,7 @@ import com.cerebrallychallenged.hypogean.messages.AckUpdate
 import com.cerebrallychallenged.hypogean.messages.AdminCommand
 import com.cerebrallychallenged.hypogean.messages.ClaimFaction
 import com.cerebrallychallenged.hypogean.messages.ClientToServerMessage
+import com.cerebrallychallenged.hypogean.messages.DisconnectCommand
 import com.cerebrallychallenged.hypogean.messages.ErrorMessage
 import com.cerebrallychallenged.hypogean.messages.ExitCommand
 import com.cerebrallychallenged.hypogean.messages.ExpandPartialAction
@@ -56,7 +57,7 @@ import kotlin.coroutines.coroutineContext
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 
-internal fun CoroutineScope.launchServer(
+fun CoroutineScope.launchServer(
         rulebook: Rulebook
 ) : Server {
     val server = Server(rulebook)
@@ -70,8 +71,13 @@ internal fun CoroutineScope.launchServer(
 // How many steps may the server compute in advance before the clients receive their ACK?
 private const val PRECOMPUTED_UPDATE_COUNT = 10
 
-internal class Server(private val rulebook: Rulebook) {
-    private inner class ClientRep(val clientId: Long, val send: (ByteArray) -> Unit, val isPlayer: Boolean) {
+class Server(private val rulebook: Rulebook) {
+    private inner class ClientRep(
+        val clientId: Long,
+        val connector: ClientConnector,
+        val isPlayer: Boolean
+    ) {
+        val send = connector.sendToClient
         var updateId: Long = 0
 
         var faction: Faction? = null
@@ -155,6 +161,10 @@ internal class Server(private val rulebook: Rulebook) {
                     }
                     JunManager.quitGame()
                 }
+                is DisconnectCommand -> {
+                    log.info { "Server handling DisconnectCommand" }
+                    connector.close()
+                }
             }
         }
     }
@@ -185,7 +195,7 @@ internal class Server(private val rulebook: Rulebook) {
             isPlayer: Boolean
     ) {
         messages.trySend { scope ->
-            val client = ClientRep(clients.size.toLong() + 1, connector.sendToClient, isPlayer)
+            val client = ClientRep(clients.size.toLong() + 1, connector, isPlayer)
             clients.add(client)
             client.send(HelloClient(client.clientId))
             scope.launch {
@@ -238,9 +248,22 @@ internal class Server(private val rulebook: Rulebook) {
         }
     }
 
+    private var isRunning = true
+
+    fun stop() {
+        isRunning = false
+        messages.close()
+        for (client in clients) {
+            client.connector.close()
+        }
+    }
+
     suspend fun run() {
         coroutineScope {
-            messages.consumeAsFlow().collect { message -> message(this) }
+            messages.consumeAsFlow().collect { message -> 
+                if (!isRunning) return@collect
+                message(this) 
+            }
         }
     }
 

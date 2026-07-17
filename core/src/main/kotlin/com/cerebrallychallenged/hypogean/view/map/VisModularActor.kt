@@ -83,6 +83,7 @@ abstract class VisModularActor(
     override fun dispose() {
         super.dispose()
         node.dispose()
+        rootComponent.unregisterComponent()
     }
 
     private val changeVisitor = object : WorldChange.SimpleSuspendVisitor {

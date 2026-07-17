@@ -286,6 +286,12 @@ class MapView private constructor(
         scrollManager.onInput(inputEvent, commands)
     }
 
+    override fun dispose() {
+        visMap.disposeAndClear()
+        activeActorIndicator.dispose()
+        hintIndicator.dispose()
+    }
+
     private fun updateHitProbabilityTooltip(state: ActionInputState) {
         hitProbabilityTooltip?.let {
             widget.layers[GuiLayer.Tooltip].children.remove(it)

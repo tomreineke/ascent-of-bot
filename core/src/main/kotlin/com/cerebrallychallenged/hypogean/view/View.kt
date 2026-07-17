@@ -21,4 +21,10 @@ interface View {
      * Executed in Unreal thread.
      */
     fun onInput(inputEvent: InputEvent, commands: Collection<InputCommand>) {}
+
+    /**
+     *
+     * Executed in Unreal thread.
+     */
+    fun dispose() {}
 }

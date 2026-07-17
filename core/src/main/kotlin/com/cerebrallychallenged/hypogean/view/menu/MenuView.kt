@@ -4,6 +4,7 @@ import com.cerebrallychallenged.hypogean.gui.GuiLayer
 import com.cerebrallychallenged.hypogean.gui.get
 import com.cerebrallychallenged.hypogean.gui.standardButton
 import com.cerebrallychallenged.hypogean.gui.window
+import com.cerebrallychallenged.hypogean.messages.DisconnectCommand
 import com.cerebrallychallenged.hypogean.messages.ExitCommand
 import com.cerebrallychallenged.hypogean.messages.SaveCommand
 import com.cerebrallychallenged.hypogean.model.worldFactory
@@ -38,6 +39,9 @@ class MenuView(context: ViewFactory.Context) : View {
             val time = SaveGameDateTimeFormat.format(LocalDateTime.now())
             context.viewModel.client.sendToServer(SaveCommand("$levelName-$time"))
         }
+        standardButton("Main Menu", Align.Stretch) {
+            context.viewModel.client.sendToServer(DisconnectCommand())
+        }
         standardButton("Exit Game", Align.Stretch) {
             context.viewModel.client.sendToServer(ExitCommand())
         }
@@ -56,5 +60,9 @@ class MenuView(context: ViewFactory.Context) : View {
 
     private fun toggleMenu() {
         mainNode.visibility = visibleIf(!mainNode.visibility.isVisible)
+    }
+
+    override fun dispose() {
+        mainNode.detach()
     }
 }

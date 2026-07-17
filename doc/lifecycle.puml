@@ -1,0 +1,27 @@
+@startuml
+
+participant HypogeanApplicationFactory as AF
+participant GameState as GS
+participant ViewManager as VM
+participant "View\n(e.g., MapView)" as V
+participant Server as S
+
+AF -> GS: execute()
+GS -> S: launchServer()
+GS -> VM: create & run()
+VM -> V: create()
+V -> V: attach to GUI Layers
+
+note over GS, V
+  Game Session Active
+end note
+
+V -> S: DisconnectCommand\n(via Client)
+S --> VM: Connection Closed
+VM -> V: dispose()
+V -> V: detach from GUI Layers
+VM --> GS: run() finished
+GS -> S: stop()
+GS --> AF: nextState: MainMenuState
+
+@enduml

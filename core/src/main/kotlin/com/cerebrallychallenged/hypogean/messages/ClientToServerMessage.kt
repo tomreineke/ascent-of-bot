@@ -21,6 +21,8 @@ internal class SaveCommand(val name: String) : ClientToServerMessage()
 
 internal class ExitCommand : ClientToServerMessage()
 
+internal class DisconnectCommand : ClientToServerMessage()
+
 //internal class SelectDialogOption(
 //        val dialogId: DialogId,
 //        val actor: Actor,

@@ -68,4 +68,8 @@ internal class HintIndicator private constructor(
             else -> {}
         }
     }
+
+    fun dispose() {
+        node.dispose()
+    }
 }

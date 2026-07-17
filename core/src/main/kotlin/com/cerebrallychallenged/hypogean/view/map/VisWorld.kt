@@ -20,6 +20,11 @@ class VisWorld(mapView: MapView, entity: World) : VisEntity<World>(mapView, enti
         updateBrightness(entity.globalDirectionalBrightness)
     }
 
+    override fun dispose() {
+        super.dispose()
+        rootComponent.unregisterComponent()
+    }
+
     override suspend fun onChange(change: WorldChange) {
         if (change is WorldChange.AttributeChanged<*>) {
             change.ifOf(World::globalDirectionalBrightness) { (_, _, brightness) ->

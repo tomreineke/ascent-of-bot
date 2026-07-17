@@ -116,6 +116,10 @@ class ActionBarView private constructor(
         }
     }
 
+    override fun dispose() {
+        hide()
+    }
+
     fun hide() {
         mainNode?.detach()
         mainNode = null
