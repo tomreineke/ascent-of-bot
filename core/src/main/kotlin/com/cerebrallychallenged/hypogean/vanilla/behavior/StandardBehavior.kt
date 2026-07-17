@@ -17,7 +17,6 @@ import com.cerebrallychallenged.hypogean.npc.consideredActions
 import com.cerebrallychallenged.hypogean.npc.evaluate
 import com.cerebrallychallenged.hypogean.npc.gatherActions
 import com.cerebrallychallenged.hypogean.npc.maybeShoutStandard
-import com.cerebrallychallenged.hypogean.server.measureSuspending
 import com.cerebrallychallenged.hypogean.vanilla.actions.Attack
 
 sealed class ConsideredAction(
@@ -85,7 +84,7 @@ abstract class StandardBaseBehavior : Behavior(), SingleActionBehavior {
         }
     }
 
-    override suspend fun NpcContext.submitBestAction() = measureSuspending("submitBestAction") {
+    override suspend fun NpcContext.submitBestAction() {
         maybeShoutStandard()
         submit(
             select(consideredActions(::isRelevantAction))?.firstAction ?: availableActions.skipActionInstance
