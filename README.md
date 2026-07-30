@@ -25,7 +25,7 @@ If you want to run the project, you have three options:
 A list of the exact assets used can be found in [KotlinAssets](Content/Hypogean/AssetInclusion/KotlinAssets.lst).
 When you obtain all the assets used in the project the Content folder structure should look like this:
 
-![Folder structure](doc/content.png)
+![Folder structure](docs/content.png)
 
 # Setup
 1. Install Epic games launcher and Unreal Engine 5.1
@@ -33,15 +33,15 @@ When you obtain all the assets used in the project the Content folder structure 
 3. Download [RuntimeMeshComponent](https://github.com/TriAxis-Games/RealtimeMeshComponent/tree/RMC4.5_dev) and copy it to Plugins\RuntimeMeshComponent
 4. After steps 2 and 3, the plugin folder structure should look like this:
 
-   ![Folder structure](doc/plugins.png)
+   ![Folder structure](docs/plugins.png)
 5. Install Visual Code 2022 with Unreal und .Net properties.
 
-![Outdated but necessary components](doc/vs-components.png)
+![Outdated but necessary components](docs/vs-components.png)
 
 For the compatibility reasons with UE 5.1 we need these specific components in version 14.34.
 Make sure your Visual Studio folder looks like this:
 
-![MSVC installation on Windows](doc/vs-installation.png)
+![MSVC installation on Windows](docs/vs-installation.png)
 
 Execute this in your Windows shell to set environment variables correctly:
 ```
