@@ -61,7 +61,7 @@ internal class HomingShotActionInstance(
         //FIXME[Anim] emit ProjectileMove
 //        world.notifyViewEvent(ProjectileMove(shot, positionCurve, rotationCurve))
         delay(positionCurve.endTime)
-        dealWeaponEffects(equipment, target.position, listOf(target))
+        dealWeaponEffects(equipment, target.position, listOf(target), activeActor)
         handleEquipment(equipment)
     }
 }

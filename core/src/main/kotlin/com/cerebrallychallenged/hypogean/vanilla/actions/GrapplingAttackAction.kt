@@ -193,7 +193,7 @@ internal class GrapplingAttackActionInstance(
 //        val meleeAction = MeleeAction(attack, activeActor, angle)
         val meleeActionTime = 0.0f
         delay(meleeActionTime)
-        dealWeaponEffects(equipment, hitResult)
+        dealWeaponEffects(equipment, hitResult, activeActor)
         reportHit(activeActor, equipment, target, hitResult)
         handleEquipment(equipment)
     }

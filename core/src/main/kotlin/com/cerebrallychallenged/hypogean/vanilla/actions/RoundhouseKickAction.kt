@@ -67,7 +67,7 @@ class RoundhouseKickActionInstance(
         for (target in targets) {
             val hit = random.nextDouble() < hittingProbability
             if (hit) {
-                dealWeaponEffects(equipment, target.position, listOf(target))
+                dealWeaponEffects(equipment, target.position, listOf(target), activeActor)
             } else {
                 if (ProtagonistFaction.reconOf(target) == Recon.Visible) {
                     world.notifyViewEvent(OverheadTextEvent(
