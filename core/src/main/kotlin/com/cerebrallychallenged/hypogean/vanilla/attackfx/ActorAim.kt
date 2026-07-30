@@ -26,7 +26,8 @@ object ActorAim : AttackFx {
         EntityMoveEvent.zRotation(attackingActor, shootingPosition3f, preAimHeading, aimHeading)?.notifyWorldAndDelay()
         if (!sideStepDelta.isZero) {
             schedule {
-                delay(1.0f) // FIXME: depends on shooting
+                val shootingDuration = weapon.attackFx?.estimateDuration(situation, weapon, hitPosition) ?: 1.0f
+                delay(shootingDuration)
                 EntityMoveEvent
                     .zRotation(attackingActor, shootingPosition3f, aimHeading, preAimHeading)?.notifyWorldAndDelay()
                 EntityMoveEvent.linearMove(
@@ -40,5 +41,10 @@ object ActorAim : AttackFx {
         } else {
             attackingActor.heading = aimHeading
         }
+    }
+
+    context(AttackFx.Context)
+    override fun estimateDuration(): Float {
+        return weapon.attackFx?.estimateDuration(situation, weapon, hitPosition) ?: 1.0f
     }
 }

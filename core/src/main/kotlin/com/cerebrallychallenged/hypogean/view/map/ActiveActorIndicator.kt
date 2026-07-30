@@ -29,10 +29,12 @@ private val ROTATION_SPEED = Angle.DEGREE_180
 object Asset_GroundCircleIndicator : CompositeAsset({
     staticMeshComponent {
         staticMesh = load(SM_ActiveActorIndicator)
-        //TODO: Why does the following have no effect?
-        // Why is active indicator mirroring in actual chassis of actor?
+        // Prevent the indicator from affecting scene reflections and shadows
         visibleInRayTracing = false
         visibleInReflectionCaptures = false
+        castShadow = false
+        castDynamicShadow = false
+        castStaticShadow = false
         Material.bind { materials[0] = it }
         Time.bind {
             transform(translation = vec(0.0f, 0.0f, 1.0f)) {
@@ -54,6 +56,10 @@ internal class ActiveActorIndicator private constructor(
                     walkComponents<UPrimitiveComponent> {
                         renderCustomDepth = true
                         visibility = false
+                        // Ensure shadows don't affect the chassis
+                        castShadow = false
+                        castDynamicShadow = false
+                        castStaticShadow = false
                     }
                 }
         )
