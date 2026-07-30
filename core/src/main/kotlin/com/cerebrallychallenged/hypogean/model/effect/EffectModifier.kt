@@ -50,3 +50,8 @@ var Entity.passiveEffectModifier: EffectModifier by attribute(EffectModifier.Zer
  * Reduction of effects provided to entities carrying this `Entity`.
  */
 var Entity.providedPassiveEffectModifier: EffectModifier by attribute(EffectModifier.Zero)
+
+/**
+ * Bonus or malus to effects applied by this `Entity` (e.g., damage bonuses from StatusEffects on the attacker).
+ */
+var Entity.providedOffensiveModifier: EffectModifier by attribute(EffectModifier.Zero)

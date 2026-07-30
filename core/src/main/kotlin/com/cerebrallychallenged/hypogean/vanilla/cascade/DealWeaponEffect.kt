@@ -1,12 +1,15 @@
 package com.cerebrallychallenged.hypogean.vanilla.cascade
 
+import com.cerebrallychallenged.hypogean.model.Actor
 import com.cerebrallychallenged.hypogean.model.LocatedEntity
 import com.cerebrallychallenged.hypogean.model.cascade.CascadeBlock
 import com.cerebrallychallenged.hypogean.model.cascade.EffectReason
+import com.cerebrallychallenged.hypogean.model.effect.EffectModifiers
 import com.cerebrallychallenged.hypogean.model.effect.MutableEffectModifiers
 import com.cerebrallychallenged.hypogean.model.effect.areaEffect
 import com.cerebrallychallenged.hypogean.model.effect.causedStatusEffects
 import com.cerebrallychallenged.hypogean.model.effect.directEffect
+import com.cerebrallychallenged.hypogean.model.effect.providedOffensiveModifier
 import com.cerebrallychallenged.hypogean.rays.HitResult
 import com.cerebrallychallenged.hypogean.vanilla.items.Weapon
 import com.cerebrallychallenged.jun.math.geo.Vec2i
@@ -15,9 +18,10 @@ import com.cerebrallychallenged.jun.math.geo.Vec2i
 context(CascadeBlock)
 suspend fun dealWeaponEffects(
     weapon: Weapon,
-    hitResult: HitResult
+    hitResult: HitResult,
+    attacker: Actor? = null
 ) {
-    dealWeaponEffects(weapon, hitResult.position, hitResult.hitEntities)
+    dealWeaponEffects(weapon, hitResult.position, hitResult.hitEntities, attacker)
 }
 
 context(CascadeBlock)
@@ -25,9 +29,16 @@ suspend fun dealWeaponEffects(
     weapon: Weapon,
     hitPosition: Vec2i,
     hitEntities: List<LocatedEntity>,
+    attacker: Actor? = null
 ) {
     val baseModifiers = MutableEffectModifiers()
-    // FIXME: add StatusEffects etc. that increase weapon effect to baseModifiers.
+    // Apply attacker's offensive modifiers (from StatusEffects and equipment that boost damage)
+    attacker?.let { actor ->
+        val offensiveModifier = actor.providedOffensiveModifier
+        if (!offensiveModifier.isEmpty()) {
+            baseModifiers.add(EffectModifiers.Phase.Active, offensiveModifier, EffectModifiers.Reason.By(actor))
+        }
+    }
     for (hitEntity in hitEntities) {
         val directEffect = weapon.directEffect
         val causedStatusEffects = weapon.causedStatusEffects

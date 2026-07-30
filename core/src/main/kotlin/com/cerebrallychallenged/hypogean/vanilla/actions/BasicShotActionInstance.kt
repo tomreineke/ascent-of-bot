@@ -113,7 +113,7 @@ abstract class BasicShotActionInstance<W : Weapon>(
             }
             executeCascade(recorder) {
                 cascadeBlock {
-                    dealWeaponEffects(equipment, hitResult)
+                    dealWeaponEffects(equipment, hitResult, activeActor)
                     handleEquipment(equipment)
                 }
             }
@@ -148,7 +148,7 @@ abstract class BasicShotActionInstance<W : Weapon>(
             attackFx.executeFx(attackSituation, equipment, hitPosition3f)
             delay(attackFx.estimateDuration(attackSituation, equipment, hitPosition3f))
         }
-        dealWeaponEffects(equipment, hitResult)
+        dealWeaponEffects(equipment, hitResult, activeActor)
         reportHit(activeActor, equipment, target, hitResult)
         handleEquipment(equipment)
     }
