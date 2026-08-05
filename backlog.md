@@ -13,10 +13,6 @@ The action animation pipeline is incomplete. Actions should emit animation event
 - **[GrapplingAttackAction.kt:183-192](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/actions/GrapplingAttackAction.kt)** — Emit `GroundMove` and `MeleeAction` animations for grappling sequence
 - **[HomingShotAction.kt:55,61](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/actions/HomingShotAction.kt)** — Emit `ActorAim` and `ProjectileMove` animations
 - **[RoundhouseKickAction.kt:64](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/actions/RoundhouseKickAction.kt)** — Implement `hitAnimation` for roundhouse kick
-- **[ActorAim.kt:29](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/attackfx/ActorAim.kt)** — Delay duration currently hardcoded to 1.0f; should depend on actual shooting animation length
-
-### Active Actor Indicator Visual Bug
-- **[ActiveActorIndicator.kt:32](core/src/main/kotlin/com/cerebrallychallenged/hypogean/view/map/ActiveActorIndicator.kt)** — Blue dashed circle (active unit indicator) color still mirrors onto the unit's chassis. Investigate why visual override is not taking effect.
 
 ### ViewModel Selection State
 - **[ViewModel.kt:192](core/src/main/kotlin/com/cerebrallychallenged/hypogean/view/ViewModel.kt)** — `ActivateActor` event causes action bar to forget that an action has been selected. May need to preserve action selection state across actor activation or emit separate events.
@@ -26,7 +22,11 @@ The action animation pipeline is incomplete. Actions should emit animation event
 - **[Report.kt:123](core/src/main/kotlin/com/cerebrallychallenged/hypogean/view/report/Report.kt)** — Create dedicated `Report` subclass for direct-speech dialogue rendering (currently mixed with regular reports)
 
 ### Menu Systems
-- **[ActionButton.kt:54](core/src/main/kotlin/com/cerebrallychallenged/hypogean/view/actionbar/ActionButton.kt)** — Radial menu for action selection not yet implemented
+
+**Radial Menu Status (Partially Implemented)**
+
+- **PickupAction multi-select** ✅ DONE — When multiple items are in a cell, a vertical button menu appears at the cursor. Implemented in `RadialMenuView.kt` and triggered by `PickupRadialViewDisplay` event from `ViewModel.kt:324`.
+- **[ActionButton.kt:54](core/src/main/kotlin/com/cerebrallychallenged/hypogean/view/actionbar/ActionButton.kt)** — Radial menu for other intransitive multi-option actions. Currently only PickupAction uses the menu pattern. If other intransitive actions with multiple variants exist, they should follow the same pattern (currently errors at `ViewModel.kt:327`).
 - **[ContainerInventoryView.kt:18](core/src/main/kotlin/com/cerebrallychallenged/hypogean/view/modular/views/ContainerInventoryView.kt)** — Pattern could be reused for future `TradingView` UI component
 
 ---
@@ -51,8 +51,6 @@ The following utility items use a placeholder `EnergyShield` icon and need prope
 - **[GroundMovement.kt:20-21](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/rays/movement/GroundMovement.kt)** — Consider whether some actors can run over/crush smaller actors or obstacles. Also support higher default movement values for rough terrain variants.
 
 ### Weapon & Damage Effects
-
-- **[DealWeaponEffect.kt:30](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/cascade/DealWeaponEffect.kt)** — StatusEffects and equipment modifiers should apply to weapon effect calculation. Currently, baseModifiers list exists but StatusEffect contributors are not wired in.
 
 - **[BasicShotActionInstance.kt:137](core/src/main/kotlin/com/cerebrallychallenged/hypogean/vanilla/actions/BasicShotActionInstance.kt)** — Inflict damage on entities in the line of fire (e.g., shooting through a glass window to hit targets behind it, or collateral damage to props/walls).
 
@@ -127,15 +125,3 @@ The following utility items use a placeholder `EnergyShield` icon and need prope
 ### Security & Validation
 
 - **[Server.kt:129](core/src/main/kotlin/com/cerebrallychallenged/hypogean/server/Server.kt)** — Validate that client is authorized to move/interact with a given item (ownership, permissions). Currently this check is missing.
-
----
-
-## Removed/Closed
-
-- **[Polyline.kt:40](core/src/main/kotlin/com/cerebrallychallenged/jun/math/geo/curve/Polyline.kt)** — FIXME comment with no description; safe to remove.
-
----
-
-## Native Code (C++)
-
-- **[JunPlugin.cpp:190, 334](Plugins/JunPlugin/Source/Private/JunPlugin.cpp)** — Debug and shutdown notes (internal comments; keep as documentation for maintainers, no action required).

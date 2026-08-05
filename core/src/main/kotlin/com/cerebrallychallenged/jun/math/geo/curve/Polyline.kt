@@ -37,7 +37,6 @@ class Polyline<T>(
 
         private val points = TreeMap<Float, T>().also { it[startTime] = startPoint }
 
-        //FIXME
         fun withSpeed(speed: Float): Builder<T> {
             this.speed = speed
             return this
