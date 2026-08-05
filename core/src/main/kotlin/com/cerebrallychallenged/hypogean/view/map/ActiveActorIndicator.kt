@@ -32,9 +32,6 @@ object Asset_GroundCircleIndicator : CompositeAsset({
         // Prevent the indicator from affecting scene reflections and shadows
         visibleInRayTracing = false
         visibleInReflectionCaptures = false
-        castShadow = false
-        castDynamicShadow = false
-        castStaticShadow = false
         Material.bind { materials[0] = it }
         Time.bind {
             transform(translation = vec(0.0f, 0.0f, 1.0f)) {
@@ -56,10 +53,6 @@ internal class ActiveActorIndicator private constructor(
                     walkComponents<UPrimitiveComponent> {
                         renderCustomDepth = true
                         visibility = false
-                        // Ensure shadows don't affect the chassis
-                        castShadow = false
-                        castDynamicShadow = false
-                        castStaticShadow = false
                     }
                 }
         )
